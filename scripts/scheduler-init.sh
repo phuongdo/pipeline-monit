@@ -7,7 +7,7 @@ PID=$1
 BODY_DATA=$2
 END_POINT=$3
 
-PIPELINE_STATUS=$(curl -X GET $END_POINT/pipeline/status)
+PIPELINE_STATUS=$(curl -X GET -s $END_POINT/pipeline/status)
 if [ $PIPELINE_STATUS == 'null' ]
 then
    echo 'Pipeline init...'
