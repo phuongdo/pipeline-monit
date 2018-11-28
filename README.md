@@ -1,31 +1,29 @@
 # pipeline-monit
 
 
-PIPELINE  pid=2018-11-20 ( A(run|done)--> B(run|done) --> C(run|done))
+PIPELINE:  pname=demography-pred-raw,   pid=2018-11-20 ( A(run|done)--> B(run|done) --> C(run|done))
 
 
 ## Step 1. Create a pipeline process
 
 ```
-
-
-# arg1= pid, arg2: jobs, arg3: endpoint
-
-$ curl -sSL  https://raw.githubusercontent.com/phuongdo/pipeline-monit/master/scripts/scheduler-init.sh | bash -s 'A>B>C' http://localhost:10001
+# params: {arg1: pname, arg2: pid, arg3: jobs, arg4: endpoint}
+$ curl -sSL  https://raw.githubusercontent.com/phuongdo/pipeline-monit/master/scripts/scheduler-init.sh | bash -s  demography-pred-raw 2018-11-20 'A>B>C' http://localhost:10001
 ```
-
 
 ## Step2. Run Job
 
 Modify the `scripts/service-template.sh`
 
 ```
-$ sh bin/service-template.sh A http://localhost:10001
-
+# params: {arg1: pname, arg2: process-id, arg3: endpoint}
+$ sh bin/service-template.sh demography-pred-raw A http://localhost:10001
 ```
 
 ## Stop pipeline
 
 ```
-curl -x POST $END_POINT/pipeline/stop
+END_POINT=http://localhost:10001
+PNAME=demography-pred-raw
+curl -X POST $END_POINT/pipeline/$PNAME/stop
 ```

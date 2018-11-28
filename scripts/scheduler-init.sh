@@ -2,10 +2,10 @@
 
 # sh bin/scheduler-init.sh 2018-11-20 'A>B>C' http://localhost:10001
 #
-
-PID=$1
-BODY_DATA=$2
-END_POINT=$3
+PNAME=$1
+PID=$2
+BODY_DATA=$3
+END_POINT=$4
 
 PIPELINE_STATUS=$(curl -X GET -s $END_POINT/pipeline/status)
 if [ $PIPELINE_STATUS == 'null' ]
