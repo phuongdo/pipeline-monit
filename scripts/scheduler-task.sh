@@ -16,7 +16,7 @@ then
 
    CURRENT_JOB_ID=$(curl -X -s GET $END_POINT/pipeline/currentJob)
 
-   if [ $NAME_SERVICE == '$CURRENT_JOB_ID' ]
+   if [ "$NAME_SERVICE" == "$CURRENT_JOB_ID" ]
    then
         echo 'Starting job '$CURRENT_JOB_ID
         # your command here
