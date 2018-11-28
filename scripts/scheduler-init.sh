@@ -11,5 +11,5 @@ PIPELINE_STATUS=$(curl -X GET $END_POINT/pipeline/status)
 if [ $PIPELINE_STATUS == 'null' ]
 then
    echo 'Pipeline init...'
-   curl -X POST -H "Content-Type: application/json" -d $BODY_DATA $END_POINT/pipeline/create/$PID
+   curl -X POST -s -H "Content-Type: application/json" -d $BODY_DATA $END_POINT/pipeline/create/$PID
 fi

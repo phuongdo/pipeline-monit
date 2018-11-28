@@ -16,7 +16,7 @@ do
 
    if [ $PIPELINE_STATUS == 'RUNNING' ]
    then
-       echo 'Pipeline is running, select the current pipeline job...'
+       #echo 'Pipeline is running, select the current pipeline job...'
 
        CURRENT_JOB_ID=$(curl -X GET $END_POINT/pipeline/currentJob)
 
@@ -30,7 +30,7 @@ do
 
             echo 'Job '$CURRENT_JOB_ID' finished'
             # call to service
-            curl -X GET $END_POINT/pipeline/update/$CURRENT_JOB_ID/done
+            curl -X GET -s $END_POINT/pipeline/update/$CURRENT_JOB_ID/done
        fi
    fi
 
